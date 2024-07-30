@@ -1,4 +1,5 @@
 import { Exclude } from 'class-transformer'
+import { IsOptional } from 'class-validator'
 import {
   Column,
   CreateDateColumn,
@@ -13,6 +14,7 @@ import {
 import { Challenge } from '@/competition/endless/endless.service'
 
 import { EndlessKickoffs } from './endless-kickoffs.entity'
+import { Reconstructions } from './reconstructions.entity'
 import { Results } from './results.entity'
 import { Scrambles } from './scrambles.entity'
 import { Submissions } from './submissions.entity'
@@ -23,6 +25,7 @@ export enum CompetitionType {
   RANDOM,
   ENDLESS,
   FMC_CHAIN,
+  RECONSTRUCTION,
 }
 
 export enum CompetitionSubType {
@@ -49,6 +52,8 @@ export enum CompetitionStatus {
 export enum CompetitionMode {
   REGULAR,
   UNLIMITED,
+  MYSELF,
+  OTHERS,
 }
 
 export interface Level {
@@ -123,4 +128,11 @@ export class Competitions {
   get hasEnded() {
     return this.status === CompetitionStatus.ENDED || (this.endTime !== null && this.endTime <= new Date())
   }
+
+  @Column({ length: 255, default: null })
+  wcaCompetitionId: string
+
+  @IsOptional()
+  @OneToMany(() => Reconstructions, reconstruction => reconstruction.competition)
+  reconstructions: Reconstructions[]
 }

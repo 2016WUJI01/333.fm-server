@@ -95,7 +95,7 @@ export default () => ({
   },
   oauth: {
     wca: {
-      clientID: 'BHRDKfu7CguB9D9ijTtoZV67A46m2mQ0VMEZhe-h1ak',
+      clientID: process.env.WCA_CLIENT_ID ?? 'BHRDKfu7CguB9D9ijTtoZV67A46m2mQ0VMEZhe-h1ak',
       clientSecret: process.env.WCA_CLIENT_SECRET ?? '',
       scope: ['public', 'email'],
       callbackURL: process.env.WCA_CALLBACK_URL ?? 'http://localhost:3000/auth/callback',

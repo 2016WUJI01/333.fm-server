@@ -85,6 +85,9 @@ export class Submissions {
   @Column()
   userId: number
 
+  @Column({ default: null })
+  wcaId: string
+
   @Column({ nullable: true })
   resultId: number
 

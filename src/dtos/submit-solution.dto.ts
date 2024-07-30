@@ -22,4 +22,7 @@ export class SubmitSolutionDto {
 
   @IsOptional()
   insertions?: Insertion[]
+
+  @IsOptional()
+  wcaId?: string
 }

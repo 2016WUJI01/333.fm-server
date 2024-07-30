@@ -14,6 +14,7 @@ import { CompetitionModule } from './competition/competition.module'
 import configuration from './config/configuration'
 import { IfModule } from './if/if.module'
 import { ProfileModule } from './profile/profile.module'
+import { ReconstructionModule } from './reconstruction/reconstruction.module'
 import { UserModule } from './user/user.module'
 
 @Module({
@@ -27,7 +28,7 @@ import { UserModule } from './user/user.module'
       host: 'localhost',
       port: 3306,
       username: '333.fm',
-      password: '',
+      password: process.env.MYSQL_PASSWORD ?? '',
       database: '333fm',
       synchronize: true,
       autoLoadEntities: true,
@@ -51,6 +52,7 @@ import { UserModule } from './user/user.module'
     AdminModule,
     CompetitionModule,
     ProfileModule,
+    ReconstructionModule,
   ],
   controllers: [AppController],
   providers: [AppService],

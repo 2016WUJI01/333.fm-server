@@ -11,11 +11,18 @@ import {
 
 import { Competitions } from './competitions.entity'
 import { EndlessKickoffs } from './endless-kickoffs.entity'
+import { Reconstructions } from './reconstructions.entity'
 
 @Entity()
 export class Scrambles {
   @PrimaryGeneratedColumn()
   id: number
+
+  @Column({ length: 2, default: null })
+  round: string
+
+  @Column({ length: 2, default: null })
+  group: string
 
   @Column()
   number: number
@@ -38,6 +45,9 @@ export class Scrambles {
     onUpdate: 'CASCADE',
   })
   competition: Competitions
+
+  @OneToMany(() => Reconstructions, reconstruction => reconstruction.competition)
+  reconstructions: Reconstructions[]
 
   @OneToMany(() => EndlessKickoffs, kickoff => kickoff.scramble)
   kickoffs: EndlessKickoffs[]
